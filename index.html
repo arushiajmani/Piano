@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JavaScript Piano</title>
+    <title>Pianoforte</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
@@ -16,94 +16,187 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body>
-    <header class="header">
-      <h1 class="main-header">JAVASCRIPT PIANO</h1>
-      <p>Click On the keys or use your keyboard</p>
-
-      <div class="controls">
-        <p>Keyboard controls</p>
-        <p>white keys: A S D F G H J K L ;(ç)</p>
-        <p>black keys: W E T Y U O P</p>
-        <p>Hover the piano for hints</p>
+    <header class="site-header">
+      <div class="brand">
+        <h1>Pianoforte</h1>
+        <p class="tagline">A salon piano with a hearing map</p>
+      </div>
+      <div class="toolbar">
+        <label class="volume-control" for="volume">
+          Volume
+          <input
+            id="volume"
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.8"
+          />
+          <span id="volume-value">80%</span>
+        </label>
+        <div class="sequence-controls">
+          <button type="button" id="record-btn">Record</button>
+          <button type="button" id="play-btn" disabled>Play</button>
+          <p id="sequence-status" class="sequence-status">No sequence yet</p>
+        </div>
       </div>
     </header>
-    <div class="container">
-      <div class="piano">
-        <div class="keys">
-          <div class="white key" data-note="C" data-keyboard="a" data-key="65">
-            <span>C (a)</span>
-          </div>
-          <div class="black key" data-note="C#" data-keyboard="w" data-key="87">
-            <span>C# (w)</span>
-          </div>
-        </div>
-        <div class="keys">
-          <div class="white key" data-note="D" data-keyboard="s" data-key="83">
-            <span>D (s)</span>
-          </div>
-          <div class="black key" data-note="D#" data-keyboard="e" data-key="69">
-            <span>D# (e)</span>
-          </div>
-        </div>
-        <div class="keys">
-          <div class="white key" data-note="E" data-keyboard="d" data-key="68">
-            <span>E (d)</span>
-          </div>
-        </div>
-        <div class="keys">
-          <div class="white key" data-note="F" data-keyboard="f" data-key="70">
-            <span>F (f)</span>
-          </div>
-          <div class="black key" data-note="F#" data-keyboard="t" data-key="84">
-            <span>F# (t)</span>
-          </div>
-        </div>
-        <div class="keys">
-          <div class="white key" data-note="G" data-keyboard="g" data-key="71">
-            <span>G (g)</span>
-          </div>
-          <div class="black key" data-note="G#" data-keyboard="y" data-key="89">
-            <span>G# (y)</span>
-          </div>
-        </div>
-        <div class="keys">
-          <div class="white key" data-note="A" data-keyboard="h" data-key="72">
-            <span>A (h)</span>
-          </div>
-          <div class="black key" data-note="A#" data-keyboard="u" data-key="85">
-            <span>A# (u)</span>
-          </div>
-        </div>
-        <div class="keys">
-          <div class="white key" data-note="B" data-keyboard="j" data-key="74">
-            <span>B (j)</span>
-          </div>
-        </div>
-        <div class="keys">
-          <div class="white key" data-note="C" data-keyboard="k" data-key="75">
-            <span>C (k)</span>
-          </div>
-          <div class="black key" data-note="C#" data-keyboard="o" data-key="79">
-            <span>C# (o)</span>
-          </div>
-        </div>
-        <div class="keys">
-          <div class="white key" data-note="D" data-keyboard="l" data-key="76">
-            <span>D (l)</span>
-          </div>
-          <div class="black key" data-note="D#" data-keyboard="p" data-key="80">
-            <span>D# (p)</span>
-          </div>
-        </div>
-        <div class="keys">
-          <div class="white key" data-note="E" data-keyboard="ç" data-key="186">
-            <span>E (; ç)</span>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <p class="note">C</p>
+    <main class="workspace">
+      <section class="instrument" aria-label="Piano">
+        <div class="container">
+          <div class="piano">
+            <div class="keys">
+              <div class="white key" data-note="C4" data-freq="261.63" data-keyboard="a" data-key="65">
+                <span>C4 (a)</span>
+              </div>
+              <div class="black key" data-note="C#4" data-freq="277.18" data-keyboard="w" data-key="87">
+                <span>C#4 (w)</span>
+              </div>
+            </div>
+            <div class="keys">
+              <div class="white key" data-note="D4" data-freq="293.66" data-keyboard="s" data-key="83">
+                <span>D4 (s)</span>
+              </div>
+              <div class="black key" data-note="D#4" data-freq="311.13" data-keyboard="e" data-key="69">
+                <span>D#4 (e)</span>
+              </div>
+            </div>
+            <div class="keys">
+              <div class="white key" data-note="E4" data-freq="329.63" data-keyboard="d" data-key="68">
+                <span>E4 (d)</span>
+              </div>
+            </div>
+            <div class="keys">
+              <div class="white key" data-note="F4" data-freq="349.23" data-keyboard="f" data-key="70">
+                <span>F4 (f)</span>
+              </div>
+              <div class="black key" data-note="F#4" data-freq="369.99" data-keyboard="t" data-key="84">
+                <span>F#4 (t)</span>
+              </div>
+            </div>
+            <div class="keys">
+              <div class="white key" data-note="G4" data-freq="392.00" data-keyboard="g" data-key="71">
+                <span>G4 (g)</span>
+              </div>
+              <div class="black key" data-note="G#4" data-freq="415.30" data-keyboard="y" data-key="89">
+                <span>G#4 (y)</span>
+              </div>
+            </div>
+            <div class="keys">
+              <div class="white key" data-note="A4" data-freq="440.00" data-keyboard="h" data-key="72">
+                <span>A4 (h)</span>
+              </div>
+              <div class="black key" data-note="A#4" data-freq="466.16" data-keyboard="u" data-key="85">
+                <span>A#4 (u)</span>
+              </div>
+            </div>
+            <div class="keys">
+              <div class="white key" data-note="B4" data-freq="493.88" data-keyboard="j" data-key="74">
+                <span>B4 (j)</span>
+              </div>
+            </div>
+            <div class="keys">
+              <div class="white key" data-note="C5" data-freq="523.25" data-keyboard="k" data-key="75">
+                <span>C5 (k)</span>
+              </div>
+              <div class="black key" data-note="C#5" data-freq="554.37" data-keyboard="o" data-key="79">
+                <span>C#5 (o)</span>
+              </div>
+            </div>
+            <div class="keys">
+              <div class="white key" data-note="D5" data-freq="587.33" data-keyboard="l" data-key="76">
+                <span>D5 (l)</span>
+              </div>
+              <div class="black key" data-note="D#5" data-freq="622.25" data-keyboard="p" data-key="80">
+                <span>D#5 (p)</span>
+              </div>
+            </div>
+            <div class="keys">
+              <div class="white key" data-note="E5" data-keyboard=";" data-freq="659.25" data-key="186">
+                <span>E5 (;)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="instrument-meta">
+          <p class="note">—</p>
+          <p class="legend">
+            Click or type
+            <span class="mono">White: A S D F G H J K L ;</span>
+            <span class="mono">Black: W E T Y U O P</span>
+            · Hover keys for hints
+          </p>
+        </div>
+      </section>
+
+      <aside class="hearing" aria-label="Hearing map">
+        <div class="hearing-block">
+          <div class="block-title">
+            <h2>Spectrogram</h2>
+            <button
+              type="button"
+              class="info-btn"
+              id="spectrum-info-btn"
+              aria-haspopup="dialog"
+              aria-controls="spectrum-info"
+              title="About the spectrogram"
+            >
+              i
+            </button>
+          </div>
+          <canvas id="spectrogram" width="640" height="160"></canvas>
+        </div>
+        <div class="hearing-block">
+          <h2>Basilar membrane</h2>
+          <canvas id="cochlea" width="640" height="64"></canvas>
+          <div class="cochlea-axis">
+            <span>Apex · low</span>
+            <span>Base · high</span>
+          </div>
+          <p id="place-caption">Play a note to place it on the membrane.</p>
+          <p id="filter-analogy">Low notes peak toward the apex; high notes toward the base.</p>
+        </div>
+      </aside>
+    </main>
+
+    <dialog id="spectrum-info" aria-labelledby="spectrum-info-title">
+      <div class="dialog-head">
+        <h2 id="spectrum-info-title">Spectrogram</h2>
+        <button type="button" class="dialog-close" id="spectrum-info-close">
+          Close
+        </button>
+      </div>
+      <p>
+        A spectrogram is a picture of the sound over time. Each key plays a WAV
+        sample. After your first note, that audio is routed through a Web Audio
+        <strong>AnalyserNode</strong> (FFT size 2048). Every animation frame, a
+        new column is drawn on the right and the older picture slides left.
+      </p>
+      <ul>
+        <li><strong>Up / down:</strong> frequency on a log scale — high pitches at the top (~20 kHz), low at the bottom (~20 Hz).</li>
+        <li><strong>Left / right:</strong> time, newest energy on the right edge.</li>
+        <li><strong>Color:</strong> how much energy is in that frequency bin. Brighter means louder in that band.</li>
+      </ul>
+      <p>
+        A piano tone is not one line. You should see the
+        <strong>fundamental</strong> (the named pitch, e.g. A4 = 440 Hz) plus
+        quieter <strong>harmonics</strong> stacked above it. That is why a real
+        sample looks richer than a sine wave.
+      </p>
+      <p>
+        The strip below is a Greenwood-style map of the uncoiled
+        <strong>basilar membrane</strong>: low frequencies peak toward the apex
+        (left), high toward the base (right). Play C4, then E5, and the marker
+        jumps toward the base — place pitch.
+      </p>
+      <p class="dialog-note">
+        This is a software model of the audio already playing in the browser.
+        It is not a room microphone, not an EEG or BCI, and not a clinical
+        hearing test.
+      </p>
+    </dialog>
+
     <section class="audios">
       <audio src="audio/040.wav" data-key="65"></audio>
       <audio src="audio/041.wav" data-key="87"></audio>

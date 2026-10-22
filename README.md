@@ -1,12 +1,34 @@
-## Virtual Piano 🎹
+## Pianoforte
 
-Virtual piano built with HTML, CSS, and JavaScript. The piano keys can be played with the mouse or keyboard. The goal of this project was to practice DOM (Document Object Model) manipulation and event handling.
+Cool-toned browser piano. Play C4–E5 with the mouse or keyboard, set volume, record a phrase, and watch a spectrogram plus a cochlear place map of the same WAV samples. The piano key layout is the original instrument; the page around it is the product shell.
+
+How to talk about it (pitch, spectrogram **i** button, architecture): [PROJECT.md](PROJECT.md).
+
 ---
 ![preview](preview.png)
 
-### Link
+### Run locally
 
-- Live project: [JavaScript Piano (GitHub Pages)](https://saber-piano.netlify.app)
+```bash
+cd /home/arushi/tech/Piano
+python3 -m http.server 8000
+```
+
+Open `http://localhost:8000` in a browser. Stop the server with `Ctrl+C`.
+
+If port 8000 is taken:
+
+```bash
+python3 -m http.server 8080
+```
+
+Then open `http://localhost:8080`.
+
+Optional:
+
+```bash
+xdg-open http://localhost:8000
+```
 
 ### Technologies
 
@@ -19,8 +41,12 @@ Virtual piano built with HTML, CSS, and JavaScript. The piano keys can be played
 Users are able to:
 
 - [x] Play the piano using the mouse (click)
-- [x] Play the piano using the keyboard (keyboard controls are specified in the header)
-- [x] Hover the piano for hints: note names and keyboard controls are shown
+- [x] Play the piano using the keyboard (legend under the keys)
+- [x] Hover the piano for hints: octave note names (C4–E5) and keyboard controls
+- [x] Set playback volume with a slider
+- [x] Record the latest sequence and play it back
+- [x] See a spectrogram of the played WAV and a cochlear place-frequency marker
+- [x] Open the spectrogram **i** dialog for what the graph is (software model, no sensors)
 
 ### Concepts practiced
 
